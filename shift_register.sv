@@ -18,11 +18,9 @@ module shift_register
                 if (wr_en) begin
                     // MSB Case - shift data right
                     if (DIRECTION) begin 
-                        out <= out >> 1;
-                        out[31] <= data; 
+                        out <= {data, out[31:1]};
                     end else begin // LSB CASE - shift data left 
-                        out <= out << 1;
-                        out [0] <= data;
+                        out <= {out[30:0], data};
                     end 
                 end
             end
